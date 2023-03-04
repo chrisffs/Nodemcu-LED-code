@@ -3,10 +3,10 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266HTTPClient.h>
 
-const char *ssid = "WIFI NAME";
-const char *password = "PASSWORD";
+const char *ssid = ""; // Wifi Name
+const char *password = ""; // Wifi Password
 
-const char *host = "IP ADDRESS";
+const char *host = ""; // IP Address
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT); 
@@ -38,11 +38,10 @@ void setup() {
 void loop() {
   HTTPClient http;
   WiFiClient client;
-  String id, getData, Link;
-  id = "1";
-
-  getData = "?id=" + id;
-  Link = "http://ipAdrress/led_code/get.php" + getData;
+  String getData, Link, path;
+  path = "/led_code/get.php";  
+  getData = "?id=1";
+  Link = host + path + getData;
   
   http.begin(client, Link);
   
